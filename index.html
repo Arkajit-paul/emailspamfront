@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="head-wrapper">
+      <span>spam checker</span>
+      <ol>
+        <li
+          onclick="handlePageChange('index.html')"
+          id="home"
+          class="hdListColor"
+        >
+          Home
+        </li>
+        <li onclick="handlePageChange('about.html')" id="about" class="dom">
+          About us
+        </li>
+        <li onclick="handlePageChange('qna.html')" id="qna" class="dom">QnA</li>
+      </ol>
+    </div>
+    <div class="second-wrapper">
+      <div class="result-wrapper">
+        <div class="res-title">Result</div>
+        <span>This is your result.</span>
+      </div>
+    </div>
+    <div class="third-wrapper"></div>
+    <div class="fourth-wrapper">
+      <div class="title-wrapper"><strong>how it works</strong></div>
+      <div class="divider-div"></div>
+      <div class="inst-wrapper">
+        <ol>
+          <li>
+            Recharge of Rs 209 was successfull  >>>>   Not a spam SMS.
+        
+          </li>
+          <li>
+            Congratulations! you've won a Rs10000 Flipkart gift card >>>> A spam SMS. 
+            
+          </li>
+          <li>
+            Your One Time Verification code for flipkart is 664422 >>>> Not a spam email.
+            
+          </li>
+          <li>
+            Congratulations! You’ve won a million dollars. Just send us your credit card details to claim your prize >>>> A spam email
+            
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="mode-wrapper">
+        <ol>
+          <li id="mode">Mode</li>
+          <li id="sms" onclick="handleChangeMode()" class="mode-changer">
+            SMS
+          </li>
+          <li
+            id="email"
+            onclick="handleChangeMode()"
+            class="remove-mode-changer"
+          >
+            Email
+          </li>
+        </ol>
+      </div>
+      <div class="div-line-wrapper">
+        <hr class="div-line" />
+      </div>
+      <div class="text-wrapper">
+        <textarea
+          name="inpText"
+          id="inp"
+          class="text-area"
+          placeholder="Type you text here..."
+        ></textarea>
+      </div>
+      <div class="button-wrapper">
+        <input type="submit" name="" id="" class="checkBtn" value="Check" />
+      </div>
+    </div>
+    <div class="footer-wrapper">
+      <span>&copy; Paul Brothers. All rights reserved</span>
+    </div>
+
+    <script>
+      function handleChangeMode() {
+        const smsElement = document.getElementById("sms");
+        const emailElement = document.getElementById("email");
+        smsElement.classList.toggle("mode-changer");
+        smsElement.classList.toggle("remove-mode-changer");
+        emailElement.classList.toggle("mode-changer");
+        emailElement.classList.toggle("remove-mode-changer");
+      }
+
+      function handlePageChange(url) {
+        // Navigate to the new URL
+        window.location.href = url;
+      }
+
+      function addClassBasedOnURL() {
+        // Get the current URL and extract the last part of the URL
+        let currentURL = window.location.href;
+        let urlParts = currentURL.split("/");
+        let lastElement = urlParts[urlParts.length - 1];
+
+        // Handle empty last element if the URL ends with a slash
+        if (lastElement === "") {
+          lastElement = urlParts[urlParts.length - 2];
+        }
+
+        // Remove 'hdListColor' class from all list items
+        document.querySelectorAll(".head-wrapper ol li").forEach((li) => {
+          li.classList.remove("hdListColor");
+        });
+
+        // Add 'hdListColor' class to the appropriate list item based on the URL
+        if (lastElement === "index.html") {
+          document.getElementById("home").classList.add("hdListColor");
+        } else if (lastElement === "about.html") {
+          document.getElementById("about").classList.add("hdListColor");
+        } else if (lastElement === "qna.html") {
+          document.getElementById("qna").classList.add("hdListColor");
+        }
+      }
+
+      // Call the function when the page loads
+      window.onload = addClassBasedOnURL;
+    </script>
+  </body>
+</html>
